@@ -41,6 +41,7 @@ The remainder of the paper is structured as follows. @sec-data includes two line
 
 
 # Data {#sec-data}
+To analyze data from spotifyr [@spotifyr], we used the statistical programming language R [@citeR], tidyverse [@tidyverse], and dplyr [@dplyr] to assist with cleaning and analyzing the data. The data was plotted using ggplot2 [@ggplot2]. 
 
 ```{r}
 #| label: fig-model155
