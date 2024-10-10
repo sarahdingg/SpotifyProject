@@ -12,58 +12,31 @@
 library(tidyverse)
 library(testthat)
 
-data <- read_csv("data/02-analysis_data/analysis_data.csv")
+#### Workspace setup ####
+library(tidyverse)
 
 
-#### Test data ####
-# Test that the dataset has 151 rows - there are 151 divisions in Australia
-test_that("dataset has 151 rows", {
-  expect_equal(nrow(analysis_data), 151)
-})
+#### Multiple linear regeression model ####
+radioheadclean <- readRDS("data/02-analysis_data/radioheadclean")
 
-# Test that the dataset has 3 columns
-test_that("dataset has 3 columns", {
-  expect_equal(ncol(analysis_data), 3)
-})
+radioheadclean$tempo <- as.numeric(radioheadclean$tempo)
+radioheadclean$danceability <- as.numeric(radioheadclean$danceability)
+radioheadclean$valence <- as.numeric(radiohead$valence)
 
-# Test that the 'division' column is character type
-test_that("'division' is character", {
-  expect_type(analysis_data$division, "character")
-})
+analysis_model_1 <- lm(danceability ~ tempo, data = radioheadclean)
+analysis_model_2 <- lm(danceability ~ valence, data = radioheadclean)
 
-# Test that the 'party' column is character type
-test_that("'party' is character", {
-  expect_type(analysis_data$party, "character")
-})
+summary(analysis_model_1)
+summary(analysis_model_2)
 
-# Test that the 'state' column is character type
-test_that("'state' is character", {
-  expect_type(analysis_data$state, "character")
-})
+#### Plot linear regression models ####
+library(ggplot2)
 
-# Test that there are no missing values in the dataset
-test_that("no missing values in dataset", {
-  expect_true(all(!is.na(analysis_data)))
-})
-
-# Test that 'division' contains unique values (no duplicates)
-test_that("'division' column contains unique values", {
-  expect_equal(length(unique(analysis_data$division)), 151)
-})
-
-# Test that 'state' contains only valid Australian state or territory names
-valid_states <- c("New South Wales", "Victoria", "Queensland", "South Australia", "Western Australia", 
-                  "Tasmania", "Northern Territory", "Australian Capital Territory")
-test_that("'state' contains valid Australian state names", {
-  expect_true(all(analysis_data$state %in% valid_states))
-})
-
-# Test that there are no empty strings in 'division', 'party', or 'state' columns
-test_that("no empty strings in 'division', 'party', or 'state' columns", {
-  expect_false(any(analysis_data$division == "" | analysis_data$party == "" | analysis_data$state == ""))
-})
-
-# Test that the 'party' column contains at least 2 unique values
-test_that("'party' column contains at least 2 unique values", {
-  expect_true(length(unique(analysis_data$party)) >= 2)
-})
+ggplot(radioheadclean, aes (x=tempo, y=danceability)) + 
+  geom_point() + 
+  geom_smooth(method="lm", se = FALSE) +
+  labs(title = "Model 1: Danceability vs. Tempo")
+ggplot(radioheadclean, aes (x=valence, y=danceability)) + 
+  geom_point() + 
+  geom_smooth(method="lm", se = FALSE) +
+  labs(title = "Model 2: Danceability vs. Valence")

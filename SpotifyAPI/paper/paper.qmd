@@ -1,13 +1,14 @@
 ---
-title: "My title"
-subtitle: "My subtitle if needed"
+title: "Spotify API Analysis Activity"
 author: 
-  - First author
-  - Another author
-thanks: "Code and data are available at: [https://github.com/RohanAlexander/starter_folder](https://github.com/RohanAlexander/starter_folder)."
-date: today
+  - Sarah Ding
+  - Jamie Lee
+  - Vandan Patel
+  - Prankit Bhardwaj
+  - Dong Jun Yoon
+thanks: "Code and data are available at: https://github.com/sarahdingg/SpotifyProject/tree/main/SpotifyAPI."
+date: Oct 10, 2024
 date-format: long
-abstract: "First sentence. Second sentence. Third sentence. Fourth sentence."
 format: pdf
 number-sections: true
 bibliography: references.bib
@@ -29,18 +30,7 @@ library(ggplot2)
 
 # Introduction
 
-Overview paragraph
-
-Estimand paragraph
-
-Results paragraph
-
-Why it matters paragraph
-
-Telegraphing paragraph: The remainder of this paper is structured as follows. @sec-data....
-
-
-
+This paper aims to investigate the factors influencing the danceability of Radiohead's tracks by analyzing key musical features: tempo, mode, and valence. Tempo refers to the speed of the music, measured in beats per minute, while mode indicates whether a track is in a major or minor key, affecting the emotional tone of the music. Valence measures the perceived positivity or emotional quality of a song, with higher values reflecting more cheerful and energetic tones, on a scale of 0.0 - 1.0. By examining the relationship between these variables and the danceability of Radiohead's songs, we seek to gain insights into the musical elements that enhance or hinder the ability of a track to engage listeners and encourage movement. The paper aims to find a correlation with these three variables and danceability.
 
 
 
