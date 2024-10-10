@@ -87,6 +87,9 @@ ggplot(radioheadclean, aes (x=valence, y=danceability)) +
 The upward slope in @fig-model1 displays a weak positive correlation between valence and danceability for Radiohead's songs. Each point represents an individual song, with the blue line showing the trend from the regression model. Songs with higher valence—representing a more positive emotional tone—tend to have slightly higher danceability scores. However, the spread of the points indicates that the relationship between valence and danceability is not particularly strong.
 
 
+# References
+
+
 
 
 
