@@ -1,0 +1,91 @@
+---
+title: "Analysis of Radiohead's Music Factors Affecting Dancebility"
+subtitle: "A weak correlation between valence and dancebility."
+author: 
+  - Sarah Ding
+  - Jamie Lee
+  - Vandan Patel
+  - Prankit Bhardwaj
+  - Dong Jun Yoon
+thanks: "Code and data are available at: https://github.com/sarahdingg/SpotifyProject/tree/main/SpotifyAPI."
+date: Oct 10, 2024
+abstract: "This paper investigates the factors influencing the danceability of Radiohead's tracks by analyzing tempo, and valence. Our findings indicate that tempo shows no statistically significant correlation with danceability, suggesting it does not play a major role in determining the danceable quality of the songs. Valence exhibits a weak positive correlation with danceability, indicating a modest association where higher valence tracks tend to be slightly more danceable."
+date-format: long
+format: pdf
+number-sections: true
+bibliography: references.bib
+---
+
+```{r}
+#| include: false
+#| warning: false
+#| message: false
+
+library(tidyverse)
+
+radioheadclean <- readRDS(here::here("data/02-analysis_data/radioheadclean.rds"))
+
+radioheadclean$tempo <- as.numeric(radioheadclean$tempo)
+radioheadclean$danceability <- as.numeric(radioheadclean$danceability)
+radioheadclean$valence <- as.numeric(radioheadclean$valence)
+```
+
+
+# Introduction
+
+This paper investigates the factors influencing the danceability of Radiohead's tracks by analyzing key musical features: tempo, and valence. Tempo refers to the speed of the music. Valence measures the perceived positivity or emotional quality of a song, with higher values reflecting more cheerful and energetic tones, on a scale of 0.0 - 1.0. By examining the relationship between these variables and the danceability of Radiohead's songs, we seek to gain insights into the musical elements that enhance or hinder the ability of a track to engage listeners and encourage movement. 
+
+The paper aims to find a correlation between tempo and valence with danceability. After performing data cleaning and analysis, specific musical characteristics significantly influence the danceability of Radiohead's tracks. Tempo plays a prominent role, as songs with a higher beats-per-minute (BPM) rate exhibit a stronger association with increased danceability, suggesting that faster-paced tracks are more likely to encourage listeners to dance. Furthermore, songs with higher valence—indicative of a more positive, cheerful emotional quality—are also associated with greater danceability. These findings suggest that tempo, mode, and valence collectively contribute to the danceable nature of Radiohead's music, shedding light on how these elements provoke movement and engagement in listeners. Thus, if musicians want to create a danceable music track they should consider making music with a faster pace also known as a higher beats-per-minute (BPM) to give an inspirational and uplifting tone.
+
+The remainder of the paper is structured as follows. @sec-data includes two linear regression models that display the correlations between danceability and valence, as well as danceability and tempo. 
+
+
+# Data {#sec-data}
+
+```{r}
+#| label: fig-model155
+#| fig-cap: "Tempo vs Danceability: The relationship between tempo and danceability shows no statistically significance between tempo and danceability, indicating that variations in tempo do not meaningfully predict the danceability of the songs."
+#| echo: false
+#| warning: false
+#| message: false
+
+#### Multiple linear regeression model ####
+
+#analysis_model_1 <- lm(danceability ~ tempo, data = radioheadclean)
+#analysis_model_2 <- lm(danceability ~ valence, data = radioheadclean)
+
+#summary(analysis_model_1)
+#summary(analysis_model_2)
+
+
+ggplot(radioheadclean, aes (x=tempo, y=danceability)) + 
+  geom_point() + 
+  geom_smooth(method="lm", se = FALSE)
+
+
+```
+
+
+
+
+## Relationship between valence and danceability
+
+```{r}
+#| label: fig-model1
+#| fig-cap: "Valence vs Danceability: The relationship between valence and danceability reveals a weak positive correlation, indicating that while songs with higher valence—reflecting a more positive emotional tone—tend to have slightly higher danceability scores, the relationship is not particularly strong."
+#| echo: false
+#| warning: false
+#| message: false
+library(ggplot2)
+
+ggplot(radioheadclean, aes (x=valence, y=danceability)) + 
+  geom_point() + 
+  geom_smooth(method="lm", se = FALSE) 
+```
+
+@fig-model1 displays a weak positive correlation between valence and dancability for Radiohead's songs. Spotify  measures the positivity of music through the valence variable. The positive correlation suggests that positive emotions are associated with greater dancability. 
+
+
+# References
+
+
