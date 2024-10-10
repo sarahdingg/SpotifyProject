@@ -1,5 +1,6 @@
 ---
-title: "Spotify API Analysis Activity"
+title: "Analysis of Radiohead's Music Factors Affecting Dancebility"
+subtitle: "A weak correlation between valence and dancebility."
 author: 
   - Sarah Ding
   - Jamie Lee
@@ -8,6 +9,7 @@ author:
   - Dong Jun Yoon
 thanks: "Code and data are available at: https://github.com/sarahdingg/SpotifyProject/tree/main/SpotifyAPI."
 date: Oct 10, 2024
+abstract: "This paper investigates the factors influencing the danceability of Radiohead's tracks by analyzing tempo, and valence. Our findings indicate that tempo shows no statistically significant correlation with danceability, suggesting it does not play a major role in determining the danceable quality of the songs. Valence exhibits a weak positive correlation with danceability, indicating a modest association where higher valence tracks tend to be slightly more danceable."
 date-format: long
 format: pdf
 number-sections: true
@@ -20,242 +22,68 @@ bibliography: references.bib
 #| message: false
 
 library(tidyverse)
-library(palmerpenguins)
-library(opendatatoronto)
-library(tidyverse)
-library(spotifyr)
-library(ggplot2)
+
+radioheadclean <- readRDS(here::here("data/02-analysis_data/radioheadclean.rds"))
+
+radioheadclean$tempo <- as.numeric(radioheadclean$tempo)
+radioheadclean$danceability <- as.numeric(radioheadclean$danceability)
+radioheadclean$valence <- as.numeric(radioheadclean$valence)
 ```
 
 
 # Introduction
 
-This paper aims to investigate the factors influencing the danceability of Radiohead's tracks by analyzing key musical features: tempo, mode, and valence. Tempo refers to the speed of the music, measured in beats per minute, while mode indicates whether a track is in a major or minor key, affecting the emotional tone of the music. Valence measures the perceived positivity or emotional quality of a song, with higher values reflecting more cheerful and energetic tones, on a scale of 0.0 - 1.0. By examining the relationship between these variables and the danceability of Radiohead's songs, we seek to gain insights into the musical elements that enhance or hinder the ability of a track to engage listeners and encourage movement. The paper aims to find a correlation with these three variables and danceability.
+This paper investigates the factors influencing the danceability of Radiohead's tracks by analyzing key musical features: tempo, and valence. Tempo refers to the speed of the music. Valence measures the perceived positivity or emotional quality of a song, with higher values reflecting more cheerful and energetic tones, on a scale of 0.0 - 1.0. By examining the relationship between these variables and the danceability of Radiohead's songs, we seek to gain insights into the musical elements that enhance or hinder the ability of a track to engage listeners and encourage movement. 
 
+The paper aims to find a correlation between tempo and valence with danceability. After performing data cleaning and analysis, specific musical characteristics significantly influence the danceability of Radiohead's tracks. Tempo plays a prominent role, as songs with a higher beats-per-minute (BPM) rate exhibit a stronger association with increased danceability, suggesting that faster-paced tracks are more likely to encourage listeners to dance. Furthermore, songs with higher valence—indicative of a more positive, cheerful emotional quality—are also associated with greater danceability. These findings suggest that tempo, mode, and valence collectively contribute to the danceable nature of Radiohead's music, shedding light on how these elements provoke movement and engagement in listeners. Thus, if musicians want to create a danceable music track they should consider making music with a faster pace also known as a higher beats-per-minute (BPM) to give an inspirational and uplifting tone.
+
+The remainder of the paper is structured as follows. @sec-data includes two linear regression models that display the correlations between danceability and valence, as well as danceability and tempo. 
 
 
 # Data {#sec-data}
 
-## Overview
-
-We use the statistical programming language R [@citeR].... Our data [@shelter].... Following @tellingstories, we consider...
-
-Overview text
-
-## Measurement
-	
-Some paragraphs about how we go from a phenomena in the world to an entry in the dataset.
-
-## Outcome variables
-
-Add graphs, tables and text. Use sub-sub-headings for each outcome variable or update the subheading to be singular.
-
-
-
-Some of our data is of penguins (@fig-bills), from @palmerpenguins.
-
-
-# [...UPDATE THIS...]
-
-#### Download data ####
-radiohead <- get_artist_audio_features("radiohead")
-saveRDS(radiohead, "radiohead.rds")
-
-radiohead <- as_tibble(radiohead)
-
-radiohead |>
-  mutate(album_release_date = ymd(album_release_date)) |>
-  ggplot(aes(
-    x = tempo,
-    y = danceability,
-    group = album_release_date
-  )) +
-  geom_boxplot() +
-  geom_jitter(alpha = 0.5, width = 0.3, height = 0) +
-  theme_minimal() +
-  labs(
-    x = "Tempo",
-    y = "Danceability"
-  )
-
-Talk more about it.
-
-And also planes (@fig-planes). (You can change the height and width, but don't worry about doing that until you have finished every other aspect of the paper - Quarto will try to make it look nice and the defaults usually work well once you have enough text.)
-
 ```{r}
-#| label: fig-planes
-#| fig-cap: Relationship between wing length and width
+#| label: fig-model155
+#| fig-cap: "Tempo vs Danceability: The relationship between tempo and danceability shows no statistically significance between tempo and danceability, indicating that variations in tempo do not meaningfully predict the danceability of the songs."
 #| echo: false
 #| warning: false
 #| message: false
 
-analysis_data <- read_csv(here::here("data/02-analysis_data/analysis_data.csv"))
+#### Multiple linear regeression model ####
 
-analysis_data |> 
-  ggplot(aes(x = width, y = length)) +
-  geom_point(alpha = 0.8) +
-  theme_minimal() +
-  labs(x = "Wing width (mm)",
-       y = "Wing length (mm)")
+#analysis_model_1 <- lm(danceability ~ tempo, data = radioheadclean)
+#analysis_model_2 <- lm(danceability ~ valence, data = radioheadclean)
+
+#summary(analysis_model_1)
+#summary(analysis_model_2)
+
+
+ggplot(radioheadclean, aes (x=tempo, y=danceability)) + 
+  geom_point() + 
+  geom_smooth(method="lm", se = FALSE)
+
+
 ```
 
-Talk way more about it. 
-
-## Predictor variables
-
-Add graphs, tables and text.
-
-Use sub-sub-headings for each outcome variable and feel free to combine a few into one if they go together naturally.
 
 
 
-
-
-
-
-
-# Model
-
-The goal of our modelling strategy is twofold. Firstly,...
-
-Here we briefly describe the Bayesian analysis model used to investigate... Background details and diagnostics are included in [Appendix -@sec-model-details].
-
-## Model set-up
-
-Define $y_i$ as the number of seconds that the plane remained aloft. Then $\beta_i$ is the wing width and $\gamma_i$ is the wing length, both measured in millimeters.  
-
-\begin{align} 
-y_i|\mu_i, \sigma &\sim \mbox{Normal}(\mu_i, \sigma) \\
-\mu_i &= \alpha + \beta_i + \gamma_i\\
-\alpha &\sim \mbox{Normal}(0, 2.5) \\
-\beta &\sim \mbox{Normal}(0, 2.5) \\
-\gamma &\sim \mbox{Normal}(0, 2.5) \\
-\sigma &\sim \mbox{Exponential}(1)
-\end{align}
-
-We run the model in R [@citeR] using the `rstanarm` package of @rstanarm. We use the default priors from `rstanarm`.
-
-
-### Model justification
-
-We expect a positive relationship between the size of the wings and time spent aloft. In particular...
-
-We can use maths by including latex between dollar signs, for instance $\theta$.
-
-
-# Results
-
-Our results are summarized in @tbl-modelresults.
+## Relationship between valence and danceability
 
 ```{r}
+#| label: fig-model1
+#| fig-cap: "Valence vs Danceability: The relationship between valence and danceability reveals a weak positive correlation, indicating that while songs with higher valence—reflecting a more positive emotional tone—tend to have slightly higher danceability scores, the relationship is not particularly strong."
 #| echo: false
-#| eval: true
 #| warning: false
 #| message: false
+library(ggplot2)
 
-library(rstanarm)
-
-first_model <-
-  readRDS(file = here::here("models/first_model.rds"))
+ggplot(radioheadclean, aes (x=valence, y=danceability)) + 
+  geom_point() + 
+  geom_smooth(method="lm", se = FALSE) 
 ```
 
-```{r}
-#| echo: false
-#| eval: true
-#| label: tbl-modelresults
-#| tbl-cap: "Explanatory models of flight time based on wing width and wing length"
-#| warning: false
-
-modelsummary::modelsummary(
-  list(
-    "First model" = first_model
-  ),
-  statistic = "mad",
-  fmt = 2
-)
-```
-
-
-
-
-# Discussion
-
-## First discussion point {#sec-first-point}
-
-If my paper were 10 pages, then should be be at least 2.5 pages. The discussion is a chance to show off what you know and what you learnt from all this. 
-
-## Second discussion point
-
-Please don't use these as sub-heading labels - change them to be what your point actually is.
-
-## Third discussion point
-
-## Weaknesses and next steps
-
-Weaknesses and next steps should also be included.
-
-\newpage
-
-\appendix
-
-# Appendix {-}
-
-
-# Additional data details
-
-# Model details {#sec-model-details}
-
-## Posterior predictive check
-
-In @fig-ppcheckandposteriorvsprior-1 we implement a posterior predictive check. This shows...
-
-In @fig-ppcheckandposteriorvsprior-2 we compare the posterior with the prior. This shows... 
-
-```{r}
-#| eval: true
-#| echo: false
-#| message: false
-#| warning: false
-#| label: fig-ppcheckandposteriorvsprior
-#| layout-ncol: 2
-#| fig-cap: "Examining how the model fits, and is affected by, the data"
-#| fig-subcap: ["Posterior prediction check", "Comparing the posterior with the prior"]
-
-pp_check(first_model) +
-  theme_classic() +
-  theme(legend.position = "bottom")
-
-posterior_vs_prior(first_model) +
-  theme_minimal() +
-  scale_color_brewer(palette = "Set1") +
-  theme(legend.position = "bottom") +
-  coord_flip()
-```
-
-## Diagnostics
-
-@fig-stanareyouokay-1 is a trace plot. It shows... This suggests...
-
-@fig-stanareyouokay-2 is a Rhat plot. It shows... This suggests...
-
-```{r}
-#| echo: false
-#| eval: true
-#| message: false
-#| warning: false
-#| label: fig-stanareyouokay
-#| fig-cap: "Checking the convergence of the MCMC algorithm"
-#| fig-subcap: ["Trace plot", "Rhat plot"]
-#| layout-ncol: 2
-
-plot(first_model, "trace")
-
-plot(first_model, "rhat")
-```
-
-
-
-\newpage
+@fig-model1 displays a weak positive correlation between valence and dancability for Radiohead's songs. Spotify  measures the positivity of music through the valence variable. The positive correlation suggests that positive emotions are associated with greater dancability. 
 
 
 # References
