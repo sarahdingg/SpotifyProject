@@ -1,14 +1,18 @@
 #### Preamble ####
-# Purpose: Tests the structure and validity of the simulated Australian 
-  #electoral divisions dataset.
-# Author: Rohan Alexander
-# Date: 26 September 2024
-# Contact: rohan.alexander@utoronto.ca
-# License: MIT
+# Purpose: Tests the structure and validity of the simulated Spotify API data
+# Author: 
+  - Sarah Ding
+  - Jamie Lee
+  - Vandan Patel
+  - Prankit Bhardwaj
+  - Dong Jun Yoon
+# Date: 21 November 2024
+# Contact: sarah.ding@mail.utoronto.ca
+# License: UofT
 # Pre-requisites: 
   # - The `tidyverse` package must be installed and loaded
   # - 00-simulate_data.R must have been run
-# Any other information needed? Make sure you are in the `starter_folder` rproj
+# Any other information needed? Make sure you are in the `spotifyAPI` rproj
 
 
 #### Workspace setup ####
