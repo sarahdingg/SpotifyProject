@@ -1,5 +1,5 @@
 #### Preamble ####
-# Purpose: Tests the structure and validity of the simulated Spotify API data
+# Purpose: Tests the structure and validity of the analysis dataset
 # Author: 
   - Sarah Ding
   - Jamie Lee
