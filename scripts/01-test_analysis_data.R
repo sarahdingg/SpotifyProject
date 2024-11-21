@@ -11,7 +11,7 @@
 # License: UofT
 # Pre-requisites: 
   # - The `tidyverse` package must be installed and loaded
-  # - 00-simulate_data.R must have been run
+  # - analysis_data must have been run
 # Any other information needed? Make sure you are in the `spotifyAPI` rproj
 
 
