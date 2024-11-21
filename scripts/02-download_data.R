@@ -1,11 +1,16 @@
 #### Preamble ####
-# Purpose: Downloads and saves the data from [...UPDATE THIS...]
-# Author: Rohan Alexander [...UPDATE THIS...]
-# Date: 11 February 2023 [...UPDATE THIS...]
-# Contact: rohan.alexander@utoronto.ca [...UPDATE THIS...]
-# License: MIT
-# Pre-requisites: [...UPDATE THIS...]
-# Any other information needed? [...UPDATE THIS...]
+# Purpose: Downloads and saves the data from Spotify API
+# Author: 
+  - Sarah Ding
+  - Jamie Lee
+  - Vandan Patel
+  - Prankit Bhardwaj
+  - Dong Jun Yoon
+# Date: 21 November 2024
+# Contact: sarah.ding@mail.utoronto.ca
+# License: UofT
+# Pre-requisites: make sure 'spotifyr' package is installed
+# Any other information needed? N/A
 
 
 #### Workspace setup ####
