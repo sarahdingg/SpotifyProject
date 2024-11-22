@@ -8,8 +8,8 @@ author:
   - Prankit Bhardwaj
   - Dong Jun Yoon
 thanks: "Code and data are available at: https://github.com/sarahdingg/SpotifyProject/tree/main/SpotifyAPI."
-date: Oct 10, 2024
-abstract: "This paper investigates the factors influencing the danceability of Radiohead's tracks by analyzing tempo, and valence. Our findings indicate that tempo shows no statistically significant correlation with danceability, suggesting it does not play a major role in determining the danceable quality of the songs. Valence exhibits a weak positive correlation with danceability, indicating a modest association where higher valence tracks tend to be slightly more danceable."
+date: 21 November, 2024
+abstract: "This paper investigates the factors influencing the danceability of Radiohead's tracks by analyzing two key musical features: tempo and valence. The analysis reveals that tempo has no statistically significant relationship with danceability, indicating that variations in a song's speed do not substantially affect its ability to engage listeners and encourage movement. In contrast, valence demonstrates a weak positive correlation with danceability, suggesting that songs with higher valence—reflecting a more positive emotional tone—tend to have slightly higher danceability scores. These results highlight that while tempo does not meaningfully contribute to danceability, valence plays a modest role, offering insights into how emotional tone may influence listener engagement."
 date-format: long
 format: pdf
 number-sections: true
@@ -33,15 +33,15 @@ radioheadclean$valence <- as.numeric(radioheadclean$valence)
 
 # Introduction
 
-This paper investigates the factors influencing the danceability of Radiohead's tracks by analyzing key musical features: tempo, and valence. Tempo refers to the speed of the music. Valence measures the perceived positivity or emotional quality of a song, with higher values reflecting more cheerful and energetic tones, on a scale of 0.0 - 1.0. By examining the relationship between these variables and the danceability of Radiohead's songs, we seek to gain insights into the musical elements that enhance or hinder the ability of a track to engage listeners and encourage movement. 
+This paper investigates the factors influencing the danceability of Radiohead's tracks by analyzing key musical features: tempo and valence. Tempo refers to the speed of the music, while valence measures the perceived positivity or emotional quality of a song, with higher values reflecting more cheerful and energetic tones, on a scale of 0.0 to 1.0. By examining the relationship between these variables and the danceability of Radiohead's songs, we seek to identify the musical elements that enhance or hinder the ability of a track to engage listeners and encourage movement.
 
-The paper aims to find a correlation between tempo and valence with danceability. After performing data cleaning and analysis, specific musical characteristics significantly influence the danceability of Radiohead's tracks. Tempo plays a prominent role, as songs with a higher beats-per-minute (BPM) rate exhibit a stronger association with increased danceability, suggesting that faster-paced tracks are more likely to encourage listeners to dance. Furthermore, songs with higher valence—indicative of a more positive, cheerful emotional quality—are also associated with greater danceability. These findings suggest that tempo, mode, and valence collectively contribute to the danceable nature of Radiohead's music, shedding light on how these elements provoke movement and engagement in listeners. Thus, if musicians want to create a danceable music track they should consider making music with a faster pace also known as a higher beats-per-minute (BPM) to give an inspirational and uplifting tone.
+The relationship between tempo and danceability shows no statistically significant correlation, indicating that variations in tempo do not meaningfully predict the danceability of Radiohead's songs. In contrast, valence exhibits a weak positive correlation with danceability, suggesting that songs with a more positive emotional tone tend to have slightly higher danceability scores. However, this relationship is not particularly strong, suggesting that valence alone is not a dominant factor in determining the danceability of a track. Other factors could also affect a track's danceability but are not included in this current analysis.
 
-The remainder of the paper is structured as follows. @sec-data includes two linear regression models that display the correlations between danceability and valence, as well as danceability and tempo. 
+These findings provide a deeper understanding of how tempo and valence influence danceability, demonstrating that while tempo appears to play a negligible role, valence may contribute modestly to a track's ability to engage listeners. The remainder of the paper is structured as follows: @sec-data discusses the data preparation process, and two linear regression models are presented to explore the relationships between danceability and valence, as well as danceability and tempo.
 
 
 # Data {#sec-data}
-To analyze data from spotifyr [@spotifyr], we used the statistical programming language R [@citeR], tidyverse [@tidyverse], and dplyr [@dplyr] to assist with cleaning and analyzing the data. The data was plotted using ggplot2 [@ggplot2]. 
+The original data is obtained from Spotify [@citeSpotify], using spotifyr [@spotifyr], we used the statistical programming language R [@citeR], tidyverse [@tidyverse], and dplyr [@dplyr] to assist with cleaning and analyzing the data. The data was plotted using ggplot2 [@ggplot2]. 
 
 ```{r}
 #| label: fig-model155
